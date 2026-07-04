@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
 /* ── helpers ──────────────────────────────────────── */
@@ -12,6 +13,7 @@ function useField(initial = '') {
 
 /* ── Sub-form: Log In ─────────────────────────────── */
 function LoginForm({ onSuccess, onSwitch }) {
+  const { login } = useAuth();
   const email    = useField('');
   const password = useField('');
   const [showPw, setShowPw]     = useState(false);
@@ -33,7 +35,9 @@ function LoginForm({ onSuccess, onSwitch }) {
     setBusy(true);
     try {
       await new Promise((r) => setTimeout(r, 900));
-      onSuccess({ name: email.value.split('@')[0], email: email.value, avatar: null });
+      const user = { name: email.value.split('@')[0], email: email.value, avatar: null };
+      login(user);
+      onSuccess?.(user);
     } finally { setBusy(false); }
   };
 
@@ -81,8 +85,10 @@ function LoginForm({ onSuccess, onSwitch }) {
   );
 }
 
+
 /* ── Sub-form: Sign Up ────────────────────────────── */
 function SignupForm({ onSuccess, onSwitch }) {
+  const { login } = useAuth();
   const name     = useField('');
   const email    = useField('');
   const password = useField('');
@@ -108,7 +114,9 @@ function SignupForm({ onSuccess, onSwitch }) {
     setBusy(true);
     try {
       await new Promise((r) => setTimeout(r, 1000));
-      onSuccess({ name: name.value, email: email.value, avatar: null });
+      const user = { name: name.value, email: email.value, avatar: null };
+      login(user);
+      onSuccess?.(user);
     } finally { setBusy(false); }
   };
 
