@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import './Navbar.css';
 import Login from '../../../login/Login';
+import HowItWorksDropdown from './HowItWorksDropdown';
 const NAV_LINKS = [
   { label: 'Rent', href: '#search' },
   { label: 'List your place', to: '/list-property' },
@@ -44,11 +45,14 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="navbar__links" aria-label="Primary">
-            {NAV_LINKS.map((l) =>
-              l.to
+            {NAV_LINKS.map((l) => {
+              if (l.label === 'How it works') {
+                return <HowItWorksDropdown key={l.label} />;
+              }
+              return l.to
                 ? <Link key={l.label} to={l.to}>{l.label}</Link>
-                : <a key={l.label} href={l.href}>{l.label}</a>
-            )}
+                : <a key={l.label} href={l.href}>{l.label}</a>;
+            })}
           </nav>
 
           {/* Desktop actions */}

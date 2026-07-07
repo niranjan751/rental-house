@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Navbar from '../../components/Common/Navbar/Navbar';
 import Footer from '../../components/Common/Footer/Footer';
-import AuthModal from '../../components/Common/AuthModal/AuthModal';
+import AuthModal from '../../login/Login';
 import './ListProperty.css';
 
 const DRAFT_KEY = 'rentalhub_listing_draft';

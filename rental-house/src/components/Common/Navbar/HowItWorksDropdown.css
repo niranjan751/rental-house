@@ -1,0 +1,151 @@
+.hiw-dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.hiw-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.hiw-trigger:hover, .hiw-dropdown-wrapper:hover .hiw-trigger {
+  color: var(--rust);
+}
+
+.hiw-chevron {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hiw-chevron.open {
+  transform: rotate(180deg);
+}
+
+.hiw-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  opacity: 0;
+  visibility: hidden;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(20, 33, 61, 0.12), 0 1px 3px rgba(20, 33, 61, 0.05);
+  width: 650px;
+  padding: 32px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.hiw-dropdown-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* Add a subtle pseudo-element bridging the gap so hover doesn't break */
+.hiw-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
+.hiw-dropdown-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.hiw-dropdown-header h3 {
+  font-size: 24px;
+  color: var(--ink);
+  margin: 8px 0 4px;
+}
+
+.hiw-dropdown-header p {
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.hiw-dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.hiw-step-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid var(--paper-line);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: default;
+}
+
+.hiw-step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.06);
+  border-color: var(--gold);
+}
+
+.hiw-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(232, 163, 61, 0.1);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.hiw-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hiw-step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hiw-step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--rust);
+  background: rgba(165, 67, 43, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.hiw-step-header h4 {
+  font-size: 15px;
+  color: var(--ink);
+  margin: 0;
+}
+
+.hiw-step-content p {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.5;
+  margin: 0;
+}
